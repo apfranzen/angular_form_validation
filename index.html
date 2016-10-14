@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Form Validation</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  </head>
+  <body ng-app="formApp">
+    <div class="container" ng-controller="myFormCtrl as myFormCtrl">
+
+      <h1>Here are our awesome users</h1>
+
+      <!-- {{ 1 + 2 }} -->
+
+      <!-- <h3>The number is: {{myFormCtrl.view.number}}</h3> -->
+      <form ng-submit="myFormCtrl.collectSubmission(user)" name="form" class="form" novalidate>
+        <div class="form-group">
+          <label for="username">Username: </label>
+            <input type="text" name="username" ng-model="user.username" ng-minlength=3 ng-maxlength=12 required>
+          <p ng-show="form.username.$invalid && !form.username.$pristine && form.username.$dirty" class="help-block ng-hide">Your username is invalid</p>
+        </div>
+        <div class="form-group">
+          <label for="password">Password: </label>
+            <input type="text" name="password" ng-model="user.password" ng-minlength=3 ng-maxlength=12 required>
+            <p ng-show="form.password.$invalid && !form.password.$pristine && form.password.$dirty" class="help-block ng-hide">Your password is invalid</p>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+            <input type="email" name="email" ng-model="user.email" required>
+            <p ng-show="form.email.$invalid && !form.email.$pristine  && form.email.$dirty" class="help-block ng-hide">Your email is invalid</p>
+        </div>
+        <div class="form-group">
+          <label for="zip">Zip (5 digits)</label>
+            <input type="number" name="zip" ng-model="user.zip" ng-pattern="/^(\d{5})?$/" required>
+            <p ng-show="form.zip.$invalid && !form.zip.$pristine  && form.zip.$dirty" class="help-block ng-hide">Your password is invalid</p>
+          <input type="submit" value="Submit">
+        </div>
+        <p>
+        </p>
+        <!-- <p>
+          {{form.zip.$valid}}
+        </p> -->
+      </form>
+    </div>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+  </body>
+</html>
